@@ -6,7 +6,7 @@
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
         <div id="player"></div>
         <p>
-            <input id="share-url" type="url" readonly="readonly" size="100">
+            <input id="share-url" type="url" readonly="readonly" size="100" onclick="this.select();">
         </p>
         
         <script>
@@ -88,7 +88,8 @@
                     + "&s="
                     + player.getPlaybackRate()
 
-                document.getElementById("share-url").value = shareURL
+                    document.getElementById("share-url").value = shareURL
+                    document.getElementById("share-url").select()
             }
 
             function preciseRound(num, decimals) {
