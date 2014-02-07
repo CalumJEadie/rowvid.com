@@ -5,8 +5,13 @@
     <body>
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
         <div id="player"></div>
+        <p>
+            <input id="share-url" type="url" readonly="readonly" size="100">
+        </p>
         
         <script>
+            sochivid = {}
+
             // 2. This code loads the IFrame Player API code asynchronously.
             var tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
@@ -18,6 +23,7 @@
             var player;
             function onYouTubeIframeAPIReady() {
                 videoProps = getVideoPropsFromURL()
+                sochivid.id = videoProps.id
 
                 player = new YT.Player('player', {
                     height: '390',
@@ -28,6 +34,8 @@
                         'onStateChange': onPlayerStateChange
                     }
                 });
+
+                setInterval(updateUI, 10);
             }
 
             // 4. The API will call this function when the video player is ready.
@@ -69,6 +77,21 @@
                 }
 
                 return videoProps
+            }
+
+            function updateUI() {
+                videoID = 
+                shareURL = "http://sochivid.com/?v="
+                    + sochivid.id
+                    + "&t="
+                    + preciseRound(player.getCurrentTime(), 2)
+                    + "&s="
+                    + player.getPlaybackRate()
+                document.getElementById("share-url").value = shareURL
+            }
+
+            function preciseRound(num, decimals) {
+               return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
             }
         </script>
     </body>
