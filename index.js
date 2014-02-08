@@ -11,13 +11,15 @@ function onYouTubeIframeAPIReady() {
 
     player = new YT.Player('player', {
         height: '480',
-            width: '853',
+        width: '853',
         videoId: videoProps.id,
         events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+            'onReady': onPlayerReady
         },
-        playerVars: { 'autohide': 1 }
+        playerVars: {
+            'autohide': 1,
+            'autoplay': 0
+        }
     });
 
     setInterval(updateUI, 100);
@@ -68,11 +70,7 @@ sochivid.init = function() {
 function onPlayerReady(event) {
     // event.target.playVideo();
     player.seekTo(sochivid.time);
-}
-
-// 5. The API calls this function when the player's state changes.
-function onPlayerStateChange(event) {
-
+    player.setPlaybackRate(sochivid.speed);
 }
 
 function getVideoPropsFromURL() {
@@ -94,10 +92,10 @@ function getVideoPropsFromURL() {
                     videoProps.id = value;
                     break;
                 case "t":
-                    videoProps.time = value;
+                    videoProps.time = parseFloat(value);
                     break;
                 case "s":
-                    videoProps.speed = value;
+                    videoProps.speed = parseFloat(value);
                     break;
             }
         }
@@ -124,7 +122,11 @@ function updateUI() {
         $("#share-url").select()
     }
 
-    document.getElementById("timer").value = preciseRound(player.getCurrentTime(), 2)
+    wasFocused = $("#timer").is(":focus")
+    $("#timer").val(preciseRound(player.getCurrentTime(), 2))
+    if (wasFocused) {
+        $("#timer").select()
+    }
 }
 
 function preciseRound(num, decimals) {
