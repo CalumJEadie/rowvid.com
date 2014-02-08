@@ -6,15 +6,17 @@ var player;
 function onYouTubeIframeAPIReady() {
     videoProps = getVideoPropsFromURL()
     sochivid.id = videoProps.id
+    sochivid.time = videoProps.time
 
     player = new YT.Player('player', {
-        height: '390',
-        width: '640',
+        height: '480',
+            width: '853',
         videoId: videoProps.id,
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
-        }
+        },
+        // playerVars: { 'autohide': 1 }
     });
 
     setInterval(updateUI, 100);
@@ -32,7 +34,8 @@ sochivid.init = function() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    event.target.playVideo();
+    // event.target.playVideo();
+    player.seekTo(sochivid.time);
 }
 
 // 5. The API calls this function when the player's state changes.

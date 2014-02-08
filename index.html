@@ -13,16 +13,76 @@
     <script src="/index.js"></script>
   </head>
   <body>
+
+
     
-    <div class="row">
-      <div class="large-12 columns">
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="player"></div>
-        <p>
-            <input id="share-url" type="url" readonly="readonly" size="100" onclick="this.select();">
-        </p>
-      </div>
-    </div>
+    <!-- <div style="background-color: rgb(0, 114, 187);">
+
+        <h1 class="text-center" style="font-size: 4rem; margin-top: 0; color: white;">SochiVid</h1>
+        <h4 class="text-center" style="color: white;">Watch videos from Sochi frame by frame and in slow motion</h4>
+
+    </div> -->
+    <div class="contain-to-grid">
+        <nav class="top-bar" data-topbar>
+          <ul class="title-area">
+            <li class="name">
+              <h1><a href="/">SochiVid</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+          </ul>
+
+          <section class="top-bar-section">
+            <!-- Right Nav Section -->
+            <ul class="right">
+            </ul>
+
+            <!-- Left Nav Section -->
+            <ul class="left">
+              <li><a href="/about/">About</a></li>
+            </ul>
+          </section>
+        </nav>
+    </div>  
+
+    <main>
+
+        <div class="row">
+          <div class="large-12 columns">
+
+            <div class="row" style="margin-top: 3rem;">
+                <div class="columns large-centered large-10">
+                    <div class="panel" style="margin-bottom: 1rem;">
+                        <div class="flex-video widescreen" style="margin-bottom: 1rem;">
+                            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+                            <div id="player"></div>
+                        </div>
+                        <div class="row">
+                            <div class="columns">
+                                <div class="button-bar">
+                                    <ul class="button-group">
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Back one frame"><</a></li>
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Forward one frame">></a></li>
+                                    </ul>
+                                    <ul class="button-group">
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Quarter speed">0.25</a></li>
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Half speed">0.5</a></li>
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Normal speed">1</a></li>
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="One and half speed">1.5</a></li>
+                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Double speed">2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <input id="share-url" type="url" readonly="readonly" size="100" onclick="this.select();">
+                    </p>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </main>
     
     <script src="/foundation-5.1.1/js/vendor/jquery.js"></script>
     <script src="/foundation-5.1.1/js/foundation.min.js"></script>
