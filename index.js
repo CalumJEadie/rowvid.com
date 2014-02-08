@@ -26,6 +26,8 @@ sochivid.init = function() {
 
     if (isVideoPropsInURL()) {
 
+        mixpanel.track("Video player loaded")
+
         $("#play-video").show();
 
         // 2. This code loads the IFrame Player API code asynchronously.
@@ -35,6 +37,8 @@ sochivid.init = function() {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     } else {
+
+        mixpanel.track("Video chooser loaded")
 
         $("#choose-video").show();
 
