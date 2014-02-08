@@ -38,7 +38,7 @@
 
             <!-- Left Nav Section -->
             <ul class="left">
-              <li><a href="/about/">About</a></li>
+              <!-- <li><a href="/about/">About</a></li> -->
             </ul>
           </section>
         </nav>
@@ -46,39 +46,98 @@
 
     <main>
 
-        <div class="row">
-          <div class="large-12 columns">
+        <div id="choose-video" class="row" style="margin-top: 4rem; display: none;">
+            <div class="columns small-10 small-centered">
 
-            <div class="row" style="margin-top: 3rem;">
-                <div class="columns large-centered large-10">
-                    <div class="panel" style="margin-bottom: 1rem;">
+                <div class="panel" style="padding: 4rem;">
+
+                    <h2 class="text-center">Watch YouTube videos frame by frame and in slow motion</h2>
+
+                    <form>
+                        <div class="row collapse" style="margin-top: 4rem;">
+                            <div class="column medium-8">
+                                <input id="video-fuzzy" type="text" placeholder="ENTER VIDEO URL OR ID" style="margin-bottom: 0;">
+                            </div>
+                            <div class="column medium-4">
+                                <input type="submit" class="postfix button" value="WATCH VIDEO">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="play-video" class="row" style="margin-top: 1rem; display: none;">
+          <div class="column">
+
+            <!-- <div class="row collapse">
+                <div class="column small-2 small-offset-10">
+                    <a href="#" class="button postfix">CHANGE VIDEO</a>
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="column large-centered large-12">
+                    <div class="panel" style="margin-bottom: 1rem; padding-bottom: 0;">
                         <div class="flex-video widescreen" style="margin-bottom: 1rem;">
                             <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
                             <div id="player"></div>
                         </div>
                         <div class="row">
-                            <div class="columns">
+                            <div class="column small-10">
                                 <div class="button-bar">
                                     <ul class="button-group">
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Back one frame"><</a></li>
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Forward one frame">></a></li>
+                                        <li>
+                                            <input type="text" readonly="readonly" id="timer" size="6" style="height: 2.8rem; text-align: center;" />
+                                        </li>
                                     </ul>
                                     <ul class="button-group">
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Quarter speed">0.25</a></li>
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Half speed">0.5</a></li>
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Normal speed">1</a></li>
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="One and half speed">1.5</a></li>
-                                        <li><a href="#" class="small button" style="margin-bottom: 0;" title="Double speed">2</a></li>
+                                        <li>
+                                            <button onclick="prevFrame()" class="small button" title="Back one frame"><</button>
+                                        </li>
+                                        <li>
+                                            <button onclick="nextFrame()" class="small button" title="Forward one frame">></button>
+                                        </li>
+                                    </ul>
+                                    <ul class="button-group">
+                                        <li>
+                                            <button onclick="setPlaybackRateAndPlay(0.25)" class="small button" title="Quarter speed">0.25</button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setPlaybackRateAndPlay(0.5)" class="small button" title="Half speed">0.5</button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setPlaybackRateAndPlay(1)" class="small button" title="Normal speed">1</button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setPlaybackRateAndPlay(1.5)" class="small button" title="One and half speed">1.5</button>
+                                        </li>
+                                        <li>
+                                            <button onclick="setPlaybackRateAndPlay(2)" class="small button" title="Double speed">2</button>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
+                            <div class="column small-2 text-right">
+                                <!-- AddThis Button BEGIN -->
+                                <div id="addthis" class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block; margin-top: 0.3rem;">
+                                    <a class="addthis_button_twitter"></a>
+                                    <a class="addthis_button_facebook"></a>
+                                    <a class="addthis_button_compact"></a>
+                                </div>
+                                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f4f26c01342a4e"></script>
+                                <!-- AddThis Button END -->
+                            </div>
                         </div>
                     </div>
-                    <p>
+                    <!-- <p>
                         <input id="share-url" type="url" readonly="readonly" size="100" onclick="this.select();">
-                    </p>
+                    </p> -->
                 </div>
             </div>
+
           </div>
         </div>
 

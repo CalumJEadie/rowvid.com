@@ -24,11 +24,31 @@ function onYouTubeIframeAPIReady() {
 
 sochivid.init = function() {
 
-    // 2. This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    if (isVideoPropsInURL()) {
+
+        $("#play-video").show();
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    } else {
+
+        $("#choose-video").show();
+
+        $("#choose-video form").submit(function(event) {
+            videoFuzzy = $("#video-fuzzy").val()
+            videoID = extractVideoID(videoFuzzy)
+            url = "/?v=" + videoID
+            window.location.href = url
+            event.preventDefault();
+        });
+
+        $("#video-fuzzy").focus()
+
+    }
 
 }
 
@@ -74,6 +94,10 @@ function getVideoPropsFromURL() {
     return videoProps
 }
 
+function isVideoPropsInURL() {
+    return window.location.href.indexOf("?") != -1
+}
+
 function updateUI() {
     videoID = 
     shareURL = "http://sochivid.com/?v="
@@ -83,10 +107,71 @@ function updateUI() {
         + "&s="
         + player.getPlaybackRate()
 
-        document.getElementById("share-url").value = shareURL
-        document.getElementById("share-url").select()
+    // document.getElementById("share-url").value = shareURL
+    // document.getElementById("share-url").select()
+
+    document.getElementById("timer").value = preciseRound(player.getCurrentTime(), 2)
 }
 
 function preciseRound(num, decimals) {
    return Math.round(num * Math.pow(10, decimals)) / Math.pow(10, decimals);
+}
+
+function extractVideoID(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if ( match && match[7].length == 11 ){
+        return match[7];
+    }else{
+        alert("Could not extract video ID.");
+    }
+}
+
+
+function isSpeedChangeSupported() {
+    // Flash player [1]
+    // HTML5 player [0.25,0.5,1,1.5,2 ]
+    // playbackRates == [1] if using Flash player
+    // https://developers.google.com/youtube/js_api_reference#getAvailablePlaybackRates
+    playbackRates = player.getAvailablePlaybackRates()
+    console.log("available playback rates: " + player.getAvailablePlaybackRates())
+    return playbackRates[0] != 1
+}
+
+function alertNeedHTML5Player() {
+    alert("Your browser doesn't currently support changing video speeds, pop over to http://www.youtube.com/html5, start the HTML5 trail and then you're sorted!")
+    window.open("http://www.youtube.com/html5")
+}
+
+function setPlaybackRateAndPlay(speed) {
+    if( isSpeedChangeSupported() ) {
+        setPlaybackRate(speed)
+        player.playVideo()
+    }else{
+        alertNeedHTML5Player()
+    }
+}
+
+function setPlaybackRate(speed) {
+    player.setPlaybackRate(speed)
+}
+
+function nextFrame() {
+    player.pauseVideo()
+    currentTime = player.getCurrentTime()
+    framesPerSecond = 25 // worked out by quick profiling of videos using stats for nerd feature of player
+    numFramesToAdvance = 1
+    timeToAdvance = (1/framesPerSecond) * numFramesToAdvance
+    newTime = currentTime + timeToAdvance
+    player.seekTo(newTime)
+}
+
+function prevFrame() {
+    player.pauseVideo()
+    currentTime = player.getCurrentTime()
+    framesPerSecond = 25 // worked out by quick profiling of videos using stats for nerd feature of player
+    numFramesToAdvance = 1
+    timeToAdvance = (1/framesPerSecond) * numFramesToAdvance
+    newTime = currentTime - timeToAdvance
+    player.seekTo(newTime)
 }
