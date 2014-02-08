@@ -17,7 +17,7 @@ function onYouTubeIframeAPIReady() {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
         },
-        // playerVars: { 'autohide': 1 }
+        playerVars: { 'autohide': 1 }
     });
 
     setInterval(updateUI, 100);
@@ -111,7 +111,6 @@ function isVideoPropsInURL() {
 }
 
 function updateUI() {
-    videoID = 
     shareURL = "http://sochivid.com/?v="
         + sochivid.id
         + "&t="
@@ -119,8 +118,11 @@ function updateUI() {
         + "&s="
         + player.getPlaybackRate()
 
-    // document.getElementById("share-url").value = shareURL
-    // document.getElementById("share-url").select()
+    wasFocused = $("#share-url").is(":focus")
+    $("#share-url").val(shareURL)
+    if (wasFocused) {
+        $("#share-url").select()
+    }
 
     document.getElementById("timer").value = preciseRound(player.getCurrentTime(), 2)
 }
@@ -190,6 +192,8 @@ function nextFrame() {
         "videoSpeed": player.getPlaybackRate(),
         "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
     });
+
+    updateUI();
 }
 
 function prevFrame() {
@@ -207,4 +211,6 @@ function prevFrame() {
         "videoSpeed": player.getPlaybackRate(),
         "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
     });
+
+    updateUI();
 }
