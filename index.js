@@ -7,6 +7,7 @@ function onYouTubeIframeAPIReady() {
     videoProps = getVideoPropsFromURL()
     sochivid.id = videoProps.id
     sochivid.time = videoProps.time
+    sochivid.speed = videoProps.speed
 
     player = new YT.Player('player', {
         height: '480',
@@ -20,13 +21,20 @@ function onYouTubeIframeAPIReady() {
     });
 
     setInterval(updateUI, 100);
+
+    mixpanel.track("Playing video", {
+        "videoID": sochivid.id,
+        "videoTime": sochivid.time,
+        "videoSpeed": sochivid.speed,
+        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + sochivid.time
+    });
 }
 
 sochivid.init = function() {
 
     if (isVideoPropsInURL()) {
 
-        mixpanel.track("Video player loaded")
+        mixpanel.track("Loaded video player")
 
         $("#play-video").show();
 
@@ -38,7 +46,7 @@ sochivid.init = function() {
 
     } else {
 
-        mixpanel.track("Video chooser loaded")
+        mixpanel.track("Loaded video chooser")
 
         $("#choose-video").show();
 
@@ -154,6 +162,13 @@ function setPlaybackRateAndPlay(speed) {
     }else{
         alertNeedHTML5Player()
     }
+
+    mixpanel.track("Changed speed", {
+        "videoID": sochivid.id,
+        "videoTime": player.getCurrentTime(),
+        "videoSpeed": speed,
+        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
+    });
 }
 
 function setPlaybackRate(speed) {
@@ -168,6 +183,13 @@ function nextFrame() {
     timeToAdvance = (1/framesPerSecond) * numFramesToAdvance
     newTime = currentTime + timeToAdvance
     player.seekTo(newTime)
+
+    mixpanel.track("Next frame", {
+        "videoID": sochivid.id,
+        "videoTime": player.getCurrentTime(),
+        "videoSpeed": player.getPlaybackRate(),
+        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
+    });
 }
 
 function prevFrame() {
@@ -178,4 +200,11 @@ function prevFrame() {
     timeToAdvance = (1/framesPerSecond) * numFramesToAdvance
     newTime = currentTime - timeToAdvance
     player.seekTo(newTime)
+
+    mixpanel.track("Prev frame", {
+        "videoID": sochivid.id,
+        "videoTime": player.getCurrentTime(),
+        "videoSpeed": player.getPlaybackRate(),
+        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
+    });
 }
