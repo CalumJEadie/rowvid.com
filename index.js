@@ -1,13 +1,13 @@
-sochivid = {}
+rowvid = {}
 
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 var player;
 function onYouTubeIframeAPIReady() {
     videoProps = getVideoPropsFromURL()
-    sochivid.id = videoProps.id
-    sochivid.time = videoProps.time
-    sochivid.speed = videoProps.speed
+    rowvid.id = videoProps.id
+    rowvid.time = videoProps.time
+    rowvid.speed = videoProps.speed
 
     player = new YT.Player('player', {
         height: '480',
@@ -25,14 +25,14 @@ function onYouTubeIframeAPIReady() {
     setInterval(updateUI, 100);
 
     mixpanel.track("Playing video", {
-        "videoID": sochivid.id,
-        "videoTime": sochivid.time,
-        "videoSpeed": sochivid.speed,
-        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + sochivid.time
+        "videoID": rowvid.id,
+        "videoTime": rowvid.time,
+        "videoSpeed": rowvid.speed,
+        "videoURL": "https://www.youtube.com/watch?v=" + rowvid.id + "#t=" + rowvid.time
     });
 }
 
-sochivid.init = function() {
+rowvid.init = function() {
 
     if (isVideoPropsInURL()) {
 
@@ -69,8 +69,8 @@ sochivid.init = function() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     // event.target.playVideo();
-    player.seekTo(sochivid.time);
-    player.setPlaybackRate(sochivid.speed);
+    player.seekTo(rowvid.time);
+    player.setPlaybackRate(rowvid.speed);
 }
 
 function getVideoPropsFromURL() {
@@ -109,8 +109,8 @@ function isVideoPropsInURL() {
 }
 
 function updateUI() {
-    shareURL = "http://sochivid.com/?v="
-        + sochivid.id
+    shareURL = "http://rowvid.com/?v="
+        + rowvid.id
         + "&t="
         + preciseRound(player.getCurrentTime(), 2)
         + "&s="
@@ -168,10 +168,10 @@ function setPlaybackRateAndPlay(speed) {
     }
 
     mixpanel.track("Changed speed", {
-        "videoID": sochivid.id,
+        "videoID": rowvid.id,
         "videoTime": player.getCurrentTime(),
         "videoSpeed": speed,
-        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
+        "videoURL": "https://www.youtube.com/watch?v=" + rowvid.id + "#t=" + player.getCurrentTime()
     });
 }
 
@@ -189,10 +189,10 @@ function nextFrame() {
     player.seekTo(newTime)
 
     mixpanel.track("Next frame", {
-        "videoID": sochivid.id,
+        "videoID": rowvid.id,
         "videoTime": player.getCurrentTime(),
         "videoSpeed": player.getPlaybackRate(),
-        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
+        "videoURL": "https://www.youtube.com/watch?v=" + rowvid.id + "#t=" + player.getCurrentTime()
     });
 
     updateUI();
@@ -208,10 +208,10 @@ function prevFrame() {
     player.seekTo(newTime)
 
     mixpanel.track("Prev frame", {
-        "videoID": sochivid.id,
+        "videoID": rowvid.id,
         "videoTime": player.getCurrentTime(),
         "videoSpeed": player.getPlaybackRate(),
-        "videoURL": "https://www.youtube.com/watch?v=" + sochivid.id + "#t=" + player.getCurrentTime()
+        "videoURL": "https://www.youtube.com/watch?v=" + rowvid.id + "#t=" + player.getCurrentTime()
     });
 
     updateUI();
