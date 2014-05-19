@@ -1,5 +1,7 @@
-sochivid.com
-============
+rowvid.com
+==========
+
+Watch YouTube frame by frame and in slow motion.
 
 Resources
 ---------
