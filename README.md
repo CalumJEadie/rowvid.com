@@ -1,7 +1,7 @@
 rowvid.com
 ==========
 
-Watch YouTube frame by frame and in slow motion.
+Watch YouTube videos frame by frame and in slow motion.
 
 Resources
 ---------
