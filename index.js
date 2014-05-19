@@ -24,7 +24,7 @@ function onYouTubeIframeAPIReady() {
 
     setInterval(updateUI, 100);
 
-    mixpanel.track("Playing video", {
+    analytics.track("Playing video", {
         "videoID": rowvid.id,
         "videoTime": rowvid.time,
         "videoSpeed": rowvid.speed,
@@ -36,7 +36,7 @@ rowvid.init = function() {
 
     if (isVideoPropsInURL()) {
 
-        mixpanel.track("Loaded video player")
+        analytics.track("Loaded video player")
 
         $("#play-video").show();
 
@@ -48,7 +48,7 @@ rowvid.init = function() {
 
     } else {
 
-        mixpanel.track("Loaded video chooser")
+        analytics.track("Loaded video chooser")
 
         $("#choose-video").show();
 
@@ -167,7 +167,7 @@ function setPlaybackRateAndPlay(speed) {
         alertNeedHTML5Player()
     }
 
-    mixpanel.track("Changed speed", {
+    analytics.track("Changed speed", {
         "videoID": rowvid.id,
         "videoTime": player.getCurrentTime(),
         "videoSpeed": speed,
@@ -188,7 +188,7 @@ function nextFrame() {
     newTime = currentTime + timeToAdvance
     player.seekTo(newTime)
 
-    mixpanel.track("Next frame", {
+    analytics.track("Next frame", {
         "videoID": rowvid.id,
         "videoTime": player.getCurrentTime(),
         "videoSpeed": player.getPlaybackRate(),
@@ -207,7 +207,7 @@ function prevFrame() {
     newTime = currentTime - timeToAdvance
     player.seekTo(newTime)
 
-    mixpanel.track("Prev frame", {
+    analytics.track("Prev frame", {
         "videoID": rowvid.id,
         "videoTime": player.getCurrentTime(),
         "videoSpeed": player.getPlaybackRate(),
