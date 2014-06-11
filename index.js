@@ -64,6 +64,20 @@ rowvid.init = function() {
 
     }
 
+    left = 37
+    right = 39
+
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case left:
+                prevFrame()
+                break;
+            case right:
+                nextFrame()
+                break;
+        }
+    })
+
 }
 
 // 4. The API will call this function when the video player is ready.
