@@ -179,6 +179,40 @@ function setPlaybackRate(speed) {
     player.setPlaybackRate(speed)
 }
 
+function trackNextFrame(id, time, speed, url) {
+
+    p = 0.1
+
+    if (Math.random() >= (1-p)) {
+
+        analytics.track("Next frame (p=0.1)", {
+            "videoID": id,
+            "videoTime": time,
+            "videoSpeed": speed,
+            "videoURL": "https://www.youtube.com/watch?v=" + id + "#t=" + time
+        });
+
+    }
+
+}
+
+function trackPrevFrame(id, time, speed, url) {
+
+    p = 0.1
+
+    if (Math.random() >= (1-p)) {
+
+        analytics.track("Prev frame (p=0.1)", {
+            "videoID": id,
+            "videoTime": time,
+            "videoSpeed": speed,
+            "videoURL": "https://www.youtube.com/watch?v=" + id + "#t=" + time
+        });
+
+    }
+
+}
+
 function nextFrame() {
     player.pauseVideo()
     currentTime = player.getCurrentTime()
@@ -188,12 +222,7 @@ function nextFrame() {
     newTime = currentTime + timeToAdvance
     player.seekTo(newTime)
 
-    analytics.track("Next frame", {
-        "videoID": rowvid.id,
-        "videoTime": player.getCurrentTime(),
-        "videoSpeed": player.getPlaybackRate(),
-        "videoURL": "https://www.youtube.com/watch?v=" + rowvid.id + "#t=" + player.getCurrentTime()
-    });
+    trackPrevFrame(rowvid.id, player.getCurrentTime(), player.getPlaybackRate())
 
     updateUI();
 }
@@ -207,12 +236,7 @@ function prevFrame() {
     newTime = currentTime - timeToAdvance
     player.seekTo(newTime)
 
-    analytics.track("Prev frame", {
-        "videoID": rowvid.id,
-        "videoTime": player.getCurrentTime(),
-        "videoSpeed": player.getPlaybackRate(),
-        "videoURL": "https://www.youtube.com/watch?v=" + rowvid.id + "#t=" + player.getCurrentTime()
-    });
+    trackPrevFrame(rowvid.id, player.getCurrentTime(), player.getPlaybackRate())
 
     updateUI();
 }
