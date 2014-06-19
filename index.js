@@ -195,11 +195,11 @@ function setPlaybackRate(speed) {
 
 function trackNextFrame(id, time, speed, url) {
 
-    p = 0.1
+    p = 0.01
 
     if (Math.random() >= (1-p)) {
 
-        analytics.track("Next frame (p=0.1)", {
+        analytics.track("Next frame (p=0.01)", {
             "videoID": id,
             "videoTime": time,
             "videoSpeed": speed,
@@ -212,11 +212,11 @@ function trackNextFrame(id, time, speed, url) {
 
 function trackPrevFrame(id, time, speed, url) {
 
-    p = 0.1
+    p = 0.01
 
     if (Math.random() >= (1-p)) {
 
-        analytics.track("Prev frame (p=0.1)", {
+        analytics.track("Prev frame (p=0.01)", {
             "videoID": id,
             "videoTime": time,
             "videoSpeed": speed,
@@ -236,7 +236,7 @@ function nextFrame() {
     newTime = currentTime + timeToAdvance
     player.seekTo(newTime)
 
-    trackPrevFrame(rowvid.id, player.getCurrentTime(), player.getPlaybackRate())
+    trackNextFrame(rowvid.id, player.getCurrentTime(), player.getPlaybackRate())
 
     updateUI();
 }
