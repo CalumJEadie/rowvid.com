@@ -24,7 +24,7 @@ function onYouTubeIframeAPIReady() {
 
     setInterval(updateUI, 100);
 
-    document.title = document.title + "- " + rowvid.id;
+    document.title = document.title + " - " + rowvid.id;
 
     initDisqus();
 
@@ -267,7 +267,7 @@ function initDisqus() {
      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
      */
     
-    var disqus_config = function () {
+    window.disqus_config = function () {
         if( rowvid.id ) {
             this.page.url = "http://rowvid.com/?v=" + rowvid.id;
             this.page.identifier = "/?v=" + rowvid.id;
