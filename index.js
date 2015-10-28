@@ -24,6 +24,10 @@ function onYouTubeIframeAPIReady() {
 
     setInterval(updateUI, 100);
 
+    document.title = document.title + "- " + rowvid.id;
+
+    initDisqus();
+
     analytics.track("Playing video", {
         "videoID": rowvid.id,
         "videoTime": rowvid.time,
@@ -61,6 +65,8 @@ rowvid.init = function() {
         });
 
         $("#video-fuzzy").focus()
+
+        initDisqus();
 
     }
 
@@ -253,4 +259,30 @@ function prevFrame() {
     trackPrevFrame(rowvid.id, player.getCurrentTime(), player.getPlaybackRate())
 
     updateUI();
+}
+
+function initDisqus() {
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    var disqus_config = function () {
+        if( rowvid.id ) {
+            this.page.url = "http://rowvid.com/?v=" + rowvid.id;
+            this.page.identifier = "/?v=" + rowvid.id;
+        }else{
+            this.page.url = "http://rowvid.com";
+            this.page.identifier = "";
+        }
+    };
+    
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//sochivid.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();   
 }
