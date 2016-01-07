@@ -95,96 +95,95 @@
         </div>
 
         <div id="play-video" class="row" style="margin-top: 1rem; display: none;">
-          <div class="column">
+            <div class="column">
 
-            <!-- <div class="row collapse">
-                <div class="column small-2 small-offset-10">
-                    <a href="#" class="button postfix">CHANGE VIDEO</a>
+                <div class="row collapse" style="margin-bottom: 1rem;">
+                    <div class="column text-center">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- 2 -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-2584643450298376"
+                             data-ad-slot="7184031248"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
                 </div>
-            </div> -->
 
-            <div class="row">
-                <div class="column">
-                    <div class="panel" style="margin-bottom: 1rem; padding-bottom: 0;">
-                        <div class="flex-video widescreen" style="margin-bottom: 1rem;">
-                            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-                            <div id="player"></div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <div class="button-bar">
-                                    <ul class="button-group">
-                                        <li>
-                                            <input type="text" readonly="readonly" id="timer" size="6" style="height: 2.8rem; text-align: center;" />
-                                        </li>
-                                    </ul>
-                                    <ul class="button-group">
-                                        <li>
-                                            <button onclick="prevFrame()" class="small button" title="Back one frame (left key)"><</button>
-                                        </li>
-                                        <li>
-                                            <button onclick="nextFrame()" class="small button" title="Forward one frame (right key)">></button>
-                                        </li>
-                                    </ul>
-                                    <ul class="button-group">
-                                        <li>
-                                            <button onclick="setPlaybackRateAndPlay(0.25)" class="small button" title="Quarter speed">0.25</button>
-                                        </li>
-                                        <li>
-                                            <button onclick="setPlaybackRateAndPlay(0.5)" class="small button" title="Half speed">0.5</button>
-                                        </li>
-                                        <li>
-                                            <button onclick="setPlaybackRateAndPlay(1)" class="small button" title="Normal speed">1</button>
-                                        </li>
-                                        <li>
-                                            <button onclick="setPlaybackRateAndPlay(1.5)" class="small button" title="One and half speed">1.5</button>
-                                        </li>
-                                        <li>
-                                            <button onclick="setPlaybackRateAndPlay(2)" class="small button" title="Double speed">2</button>
-                                        </li>
-                                    </ul>
+                <!-- <div class="row collapse">
+                    <div class="column small-2 small-offset-10">
+                        <a href="#" class="button postfix">CHANGE VIDEO</a>
+                    </div>
+                </div> -->
+
+                <div class="row">
+                    <div class="column">
+                        <div class="panel" style="margin-bottom: 1rem; padding-bottom: 0;">
+                            <div class="flex-video widescreen" style="margin-bottom: 1rem;">
+                                <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+                                <div id="player"></div>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <div class="button-bar">
+                                        <ul class="button-group">
+                                            <li>
+                                                <input type="text" readonly="readonly" id="timer" size="6" style="height: 2.8rem; text-align: center;" />
+                                            </li>
+                                        </ul>
+                                        <ul class="button-group">
+                                            <li>
+                                                <button onclick="prevFrame()" class="small button" title="Back one frame (left key)"><</button>
+                                            </li>
+                                            <li>
+                                                <button onclick="nextFrame()" class="small button" title="Forward one frame (right key)">></button>
+                                            </li>
+                                        </ul>
+                                        <ul class="button-group">
+                                            <li>
+                                                <button onclick="setPlaybackRateAndPlay(0.25)" class="small button" title="Quarter speed">0.25</button>
+                                            </li>
+                                            <li>
+                                                <button onclick="setPlaybackRateAndPlay(0.5)" class="small button" title="Half speed">0.5</button>
+                                            </li>
+                                            <li>
+                                                <button onclick="setPlaybackRateAndPlay(1)" class="small button" title="Normal speed">1</button>
+                                            </li>
+                                            <li>
+                                                <button onclick="setPlaybackRateAndPlay(1.5)" class="small button" title="One and half speed">1.5</button>
+                                            </li>
+                                            <li>
+                                                <button onclick="setPlaybackRateAndPlay(2)" class="small button" title="Double speed">2</button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row collapse" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
-                        <div class="column text-center">
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- 2 -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;width:728px;height:90px"
-                                 data-ad-client="ca-pub-2584643450298376"
-                                 data-ad-slot="7184031248"></ins>
-                            <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </div>
-                    </div>
-
-                    <div class="row collapse" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
-                        <div class="column medium-3">
-                            <span class="prefix">SHARE YOUR CLIP</span>
-                        </div>
-                        <div class="column medium-7">
-                            <input id="share-url" type="url" readonly="readonly" onclick="this.select();">
-                        </div>
-                        <div class="column medium-2 text-right">
-                            <!-- AddThis Button BEGIN -->
-                            <div id="addthis" class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block; margin-top: 0.1rem;">
-                                <a class="addthis_button_twitter"></a>
-                                <a class="addthis_button_facebook"></a>
-                                <a class="addthis_button_compact"></a>
+                        <div class="row collapse" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="column medium-3">
+                                <span class="prefix">SHARE YOUR CLIP</span>
                             </div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f4f26c01342a4e"></script>
-                            <!-- AddThis Button END -->
+                            <div class="column medium-7">
+                                <input id="share-url" type="url" readonly="readonly" onclick="this.select();">
+                            </div>
+                            <div class="column medium-2 text-right">
+                                <!-- AddThis Button BEGIN -->
+                                <div id="addthis" class="addthis_toolbox addthis_default_style addthis_32x32_style" style="display:inline-block; margin-top: 0.1rem;">
+                                    <a class="addthis_button_twitter"></a>
+                                    <a class="addthis_button_facebook"></a>
+                                    <a class="addthis_button_compact"></a>
+                                </div>
+                                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52f4f26c01342a4e"></script>
+                                <!-- AddThis Button END -->
+                            </div>
                         </div>
+                            
                     </div>
-                        
-                </div>
-              </div>
-
-          </div>
+                  </div>
+            </div>
         </div><!-- end #play-video -->
 
         <div class="row" style="margin-top: 1rem;">
